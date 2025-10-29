@@ -57,3 +57,42 @@ response <- req %>%
 response # Inspect content type
 response %>%
   resp_body_html()
+
+# Google Translate API translate. 
+library(httr2)
+
+req <- request("https://google-translate113.p.rapidapi.com/api/v1/translator/detect-language") %>% 
+  req_headers(
+    'X-RapidAPI-Key' = 'c8d8e44be8mshdcd0663d8d7d769p1f476ajsn1d1fe509e712',
+    'X-RapidAPI-Host' = 'google-translate113.p.rapidapi.com'
+  ) %>%
+  req_body_json(list(
+    text = "感谢您使用我们的服务"
+  ))
+
+resp <- req %>% 
+  req_perform()
+
+result <- resp %>% 
+  resp_body_json()
+
+result
+
+
+#Google Translate API Detect
+req <- request("https://google-translate113.p.rapidapi.com/api/v1/translator/detect-language") %>% 
+  req_headers(
+    'X-RapidAPI-Key' = 'c8d8e44be8mshdcd0663d8d7d769p1f476ajsn1d1fe509e712',
+    'X-RapidAPI-Host' = 'google-translate113.p.rapidapi.com'
+  ) %>%
+  req_body_json(list(
+    text = "感谢您使用我们的服务"
+  ))
+
+resp <- req %>% 
+  req_perform()
+
+result <- resp %>% 
+  resp_body_json()
+
+result
